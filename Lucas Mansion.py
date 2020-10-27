@@ -501,12 +501,12 @@ class cpew(Object):
     def action(self, act):
         if c_pew.count == 0:
             c_pew.act1 = c_pew.act2
-            drop(bible)
+            drop(book)
             c_pew.count += 1
             render()
         clear()
         obj_act(act)
-c_pew = cpew('Cracked Pew', 'The pew has a crack down the middle, you but can still sit on it.', 'You have a seat and notice a bible in the book rack in front of you.', 'You have a seat and get real bored.', (70, 535), 'Sit', (0, 0), '', (0, 0), '', (0, 0), '', 0)
+c_pew = cpew('Cracked Pew', 'The pew has a crack down the middle, you but can still sit on it.', 'You have a seat and notice a book in the book rack in front of you.', 'You have a seat and get real bored.', (70, 535), 'Sit', (0, 0), '', (0, 0), '', (0, 0), '', 0)
 
 class hym(Object):
     def __init__(self, name, look_at, act1, act2, act3, takemsg, drpmsg, b1center, b1, b2center, b2, b3center, b3, b4center, b4, count, useitem, itemreacts):
@@ -529,8 +529,8 @@ class hym(Object):
         pass
 hymnal = hym('Hymnal', 'An unusual Hymnal filled with bluegrass tunes.', 'Seems legit', 'This hymnal includes Spring is Here by the Silver String Band...', usemsg, 'Seems legit', 'fuddle sticks Banjo hymns!', (65, 535), 'Take', (225, 535), 'Read', (385, 535), 'Use on', (0, 0), '', 0, [bottle_organ], ['You try to play Spring is Here, but... you really need those three keys.', 'Wacha!'])
 
-bibletext = ['"In the beginning Lucas created Heaven, Earth, and Dions. But the earth was without', 'form and void, and darkness was on the face of the deep. And Lucas said,', '\'Let there be light,\"', 'and there was light. And Lucas saw the light, but thought it was a bit too much, so he', 'said, \'Let there be less light, save energy.\'' 'Then the mortal Stav doth spake,', '\'Lucas, it uses the same amount of energy either way.\' And Lucas said...,', '\'Oh, well fuddle sticks you.\'\"']
-class bible(Object):
+booktext = ['"In the beginning Lucas created Heaven, Earth, and Dions. But the earth was without', 'form and void, and darkness was on the face of the deep. And Lucas said,', '\'Let there be light,\"', 'and there was light. And Lucas saw the light, but thought it was a bit too much, so he', 'said, \'Let there be less light, save energy.\'' 'Then the mortal Stav doth spake,', '\'Lucas, it uses the same amount of energy either way.\' And Lucas said...,', '\'Oh, well fuddle sticks you.\'\"']
+class book(Object):
     def __init__(self, name, look_at, act1, act2, takemsg, drpmsg, b1center, b1, b2center, b2, b3center, b3, b4center, b4, count):
         super().__init__(name, look_at, act1, b1center, b1, b2center, b2, b3center, b3, b4center, b4)
         self.act2 = act2
@@ -538,16 +538,16 @@ class bible(Object):
         self.drpmsg = drpmsg
         self.count = count
     def action(self, act):
-        if act == bible.act1:
-            bible.itemmove(bible.count, bible.b1, bible, bible.act1)
+        if act == book.act1:
+            book.itemmove(book.count, book.b1, book, book.act1)
             if c_pew.count == 1:
                 drop(blhk)
                 c_pew.count += 1
-        if act == bible.act2:
-            read(bibletext)
+        if act == book.act2:
+            read(booktext)
         clear()
         obj_act(act)
-bible = bible('A Bible', '"In the beginning Lucas created Heaven, Earth, and Dions..."', 'You take the good word... but what\'s that? There was another book behind it!', 'You read some holy words.', 'You take the good word.', 'I mean wasn\'t The Bible pro slavery or something?', (65, 535), 'Take', (225, 535), 'Read', (0, 0), '', (0, 0), '', 0)
+book = book('A book', '"In the beginning Lucas created Heaven, Earth, and Dions..."', 'You take the book... but what\'s that? There was another book behind it!', 'You read some words.', 'You take the book.', 'It was a pretty weird book, anyway…', (65, 535), 'Take', (225, 535), 'Read', (0, 0), '', (0, 0), '', 0)
 
 blhktext = ['A flip to page one reveals the words \"Irv, Bob, Cyrus\"', 'Each name has a picture beside it. Most of the other pages are blank,', 'perhaps for when Lucas meets more bears.']
 class blhk(Object):
